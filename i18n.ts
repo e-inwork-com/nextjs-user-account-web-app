@@ -1,5 +1,5 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
 
 const resources = {
   en: {
@@ -9,13 +9,14 @@ const resources = {
   },
   id: {
     translation: {
-      'Home': 'Beranda'
+      'Home': 'Beranda',
+      'Create a new account': 'Buat akun baru'
     }
   },
   es: {
     translation: {}
   }
-};
+}
 
 i18n
   .use(initReactI18next)
@@ -26,4 +27,4 @@ i18n
     interpolation: {
       escapeValue: false
     }
-  });
+  })
