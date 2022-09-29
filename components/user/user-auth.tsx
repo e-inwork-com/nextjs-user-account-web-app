@@ -20,7 +20,7 @@ export const UserAuth: FC<UserAuthProps> = (props) => {
 
     if (!userAuth.isAuthenticated) {
       router.push({
-        pathname: '/login',
+        pathname: '/users/login',
         query: { returnUrl: router.asPath }
       }).catch(console.error)
     }

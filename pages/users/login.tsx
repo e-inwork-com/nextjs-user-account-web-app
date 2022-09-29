@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { LoginForm } from '../components/user/login-form'
+import { LoginForm } from '../../components/user/login-form'
 import { useTranslation } from 'react-i18next'
 
 const Login: NextPage = () => {
