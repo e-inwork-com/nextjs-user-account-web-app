@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { LoginForm } from '../components/auth/login-form'
+import { LoginForm } from '../components/user/login-form'
 import { useTranslation } from 'react-i18next'
 
 const Login: NextPage = () => {
@@ -13,8 +13,8 @@ const Login: NextPage = () => {
             <div>
               <img
                 className="h-12 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
+                src="/static/logo.png"
+                alt="e-inwork.com"
               />
               <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
                 {t('Sign in to your account')}
@@ -38,6 +38,6 @@ Login.getLayout = (page) => (
   <>
     {page}
   </>
-);
+)
 
 export default Login

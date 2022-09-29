@@ -1,13 +1,20 @@
 import type { FC } from 'react'
 import '../styles/globals.css'
+import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import '../i18n'
 import { useTranslation } from 'react-i18next'
+import { UserProvider } from '../contexts/user-context'
+import '../i18n'
 
-const App: FC<AppProps> = (props) => {
+type NexPageProps = AppProps & {
+  Component: NextPage
+}
+
+const App: FC<NexPageProps> = (props) => {
   const { Component, pageProps } = props
   const { t } = useTranslation()
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <>
@@ -20,7 +27,9 @@ const App: FC<AppProps> = (props) => {
           content="initial-scale=1, width=device-width"
         />
       </Head>
-      <Component {...pageProps} />
+      <UserProvider>
+        {getLayout(<Component {...pageProps} />)}
+      </UserProvider>
     </>
   )
 }
