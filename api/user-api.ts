@@ -4,30 +4,30 @@ import { apiConfig } from '../config'
 class UserApi {
   setSession = (accessToken: string) => {
     if (accessToken) {
-      localStorage.setItem('accessToken', accessToken)
-      axios.defaults.headers.common.Authorization = `JWT ${accessToken}`
+      window.localStorage.setItem('accessToken', accessToken)
+      axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`
     } else {
-      localStorage.removeItem('accessToken')
+      window.localStorage.removeItem('accessToken')
       delete axios.defaults.headers.common.Authorization
     }
   }
 
   removeSession = () => {
-    if (localStorage.getItem('accessToken')) {
-      localStorage.removeItem('accessToken')
-      delete axios.defaults.headers.common.Authorization
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem('accessToken')
     }
+    delete axios.defaults.headers.common.Authorization
   }
 
   async login(email: string, password: string ): Promise<object>  {
     this.removeSession()
     return new Promise((resolve, reject) => {
-      axios.post(`${apiConfig.host}/api/token/auth/`, {
+      axios.post(`${apiConfig.host}/api/token/`, {
         username: email,
         password
       }).then((response: any) => {
-        this.setSession(response.data.token)
-        resolve(response.data.token)
+        this.setSession(response.data.access)
+        resolve(response.data.access)
       }).catch((error: any) => {
         if (error.response.status === 400) {
           reject(new Error('Check the right password and the right email'))
@@ -38,13 +38,11 @@ class UserApi {
     })
   }
 
-  async register(username: string, email: string, mobilePhone: string, firstName: string, lastName: string, password: string): Promise<object>  {
+  async register(email: string, firstName: string, lastName: string, password: string): Promise<object>  {
     this.removeSession()
     return new Promise((resolve, reject) => {
       axios.post(`${apiConfig.host}/api/users/`, {
-        username,
         email,
-        mobile_phone: mobilePhone,
         first_name: firstName,
         last_name: lastName,
         password

@@ -12,7 +12,7 @@ interface State {
 interface UserContextValue extends State {
   login: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
-  register: (username: string, email: string, mobilePhone: string, firstName: string, lastName: string, password: string) => Promise<void>
+  register: (email: string, firstName: string, lastName: string, password: string) => Promise<void>
   passwordReset: (password: string) => Promise<void>
   update: (id: string, email: string, mobilePhone: string, firstName: string, lastName: string, password: string) => Promise<void>
 }
@@ -220,8 +220,8 @@ export const UserProvider: FC<UserProviderProps> = (props) => {
     })
   }
 
-  const register = async (username: string, email: string, mobilePhone: string, firstName: string, lastName: string, password: string): Promise<void> => {
-    const user = await userApi.register(username, email, mobilePhone, firstName, lastName, password)
+  const register = async (email: string, firstName: string, lastName: string, password: string): Promise<void> => {
+    const user = await userApi.register(email, firstName, lastName, password)
     dispatch({
       type: ActionType.REGISTER,
       payload: {

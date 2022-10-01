@@ -4,6 +4,8 @@ import { Menu, Transition } from '@headlessui/react'
 import { Bars3BottomLeftIcon, BellIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import PropTypes from 'prop-types'
+import { get } from 'lodash'
+import { useUser } from '../../hooks/use-user'
 
 interface DashboardNavbarProps {
   setSidebarOpen: (value: any) => void;
@@ -12,7 +14,7 @@ interface DashboardNavbarProps {
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '/users/logout' },
 ]
 
 function classNames(...classes: any) {
@@ -21,6 +23,11 @@ function classNames(...classes: any) {
 
 export const DashboardNavbar: FC<DashboardNavbarProps> = (props) => {
   const { setSidebarOpen, ...other } = props;
+  const { user } = useUser() as any
+
+  const stringAvatar = (name: string) => {
+    return `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
+  }
 
   return (
     <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
@@ -66,11 +73,9 @@ export const DashboardNavbar: FC<DashboardNavbarProps> = (props) => {
             <div>
               <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 <span className="sr-only">Open user menu</span>
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-500">
+                  <span className="text-sm font-medium leading-none text-white">{user && stringAvatar(`${get(user, 'first_name')} ${get(user, 'last_name')}`)}</span>
+                </span>
               </Menu.Button>
             </div>
             <Transition

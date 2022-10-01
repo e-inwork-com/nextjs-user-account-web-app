@@ -17,14 +17,15 @@ export const UserAuth: FC<UserAuthProps> = (props) => {
     if (!router.isReady) {
       return
     }
-
-    if (!userAuth.isAuthenticated) {
-      router.push({
-        pathname: '/users/login',
-        query: { returnUrl: router.asPath }
-      }).catch(console.error)
+    if (userAuth.isInitialized) {
+      if (!userAuth.isAuthenticated) {
+        router.push({
+          pathname: '/users/login',
+          query: { returnUrl: router.asPath }
+        }).catch(console.error)
+      }
     }
-  }, [router.isReady])
+  }, [router.isReady, userAuth])
 
   return (
     <>

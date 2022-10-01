@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
-import { LoginForm } from '../../components/user/login-form'
+import { RegisterForm  } from '../../components/user/register-form'
 import { useTranslation } from 'react-i18next'
 
-const Login: NextPage = () => {
+const Register: NextPage = () => {
   const { t } = useTranslation()
 
   return (
@@ -17,16 +17,16 @@ const Login: NextPage = () => {
                 alt="e-inwork.com"
               />
               <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
-                {t('Sign in to your account')}
+                {t('Register an account')}
               </h2>
               <p className="mt-2 text-sm text-gray-600">
               {t('Or')}{' '}
-                <a href="/users/register" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  {t('Create a new account')}
+                <a href="/users/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  {t('Login to your account')}
                 </a>
               </p>
             </div>
-            <LoginForm />
+            <RegisterForm />
           </div>
         </div>
       </div>
@@ -34,10 +34,10 @@ const Login: NextPage = () => {
   )
 }
 
-Login.getLayout = (page) => (
+Register.getLayout = (page) => (
   <>
     {page}
   </>
 )
 
-export default Login
+export default Register
