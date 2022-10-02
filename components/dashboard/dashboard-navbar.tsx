@@ -75,6 +75,7 @@ export const DashboardNavbar: FC<DashboardNavbarProps> = (props) => {
                 <span className="sr-only">Open user menu</span>
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-500">
                   <span className="text-sm font-medium leading-none text-white">{user && stringAvatar(`${get(user, 'first_name')} ${get(user, 'last_name')}`)}</span>
+                  <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white" />
                 </span>
               </Menu.Button>
             </div>
