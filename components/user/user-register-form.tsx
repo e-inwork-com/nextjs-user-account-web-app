@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { ExclamationCircleIcon } from '@heroicons/react/20/solid'
 import { useUser } from '../../hooks/use-user'
 
-export const RegisterForm: FC = () => {
+export const UserRegisterForm: FC = () => {
   const router = useRouter()
   const { t } = useTranslation()
   const { register } = useUser() as any

@@ -7,12 +7,6 @@ const resources = {
       'Home': 'Home'
     }
   },
-  id: {
-    translation: {
-      'Home': 'Beranda',
-      'Create a new account': 'Buat akun baru'
-    }
-  },
   es: {
     translation: {}
   }

@@ -2,12 +2,11 @@ import type { FC } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useTranslation } from 'react-i18next'
-import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import { ExclamationCircleIcon } from '@heroicons/react/20/solid'
 import { useUser } from '../../hooks/use-user'
 
-export const LoginForm: FC = () => {
+export const UserLoginForm: FC = () => {
   const router = useRouter()
   const { t } = useTranslation()
   const { login } = useUser() as any
@@ -31,12 +30,10 @@ export const LoginForm: FC = () => {
     onSubmit: async (values, helpers): Promise<void> => {
       try {
         await login(values.email, values.password)
-        toast.success(t('Successfuly!'))
         const url = (router.query.url as string) || '/'
         router.push(url)
       } catch (err: any) {
         console.error(err)
-        toast.error(t('Something wrong!'))
         helpers.setStatus({ success: false })
         helpers.setErrors({ submit: err.message })
         helpers.setSubmitting(false)

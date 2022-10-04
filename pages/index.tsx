@@ -1,17 +1,9 @@
 import type { NextPage } from 'next'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DashboardLayout } from '../components/dashboard/dashboard-layout'
 
 const Home: NextPage = () => {
-  const { i18n, t } = useTranslation()
-  const handleChange = async (): Promise<void> => {
-    await i18n.changeLanguage('id')
-  }
-
-  useEffect(() => {
-    handleChange()
-  }, [])
+  const { t } = useTranslation()
 
   return (
     <main className="flex-1">

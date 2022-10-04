@@ -14,7 +14,7 @@ interface UserContextValue extends State {
   logout: () => Promise<void>
   register: (email: string, firstName: string, lastName: string, password: string) => Promise<void>
   passwordReset: (password: string) => Promise<void>
-  update: (id: string, email: string, mobilePhone: string, firstName: string, lastName: string, password: string) => Promise<void>
+  update: (email: string, firstName: string, lastName: string) => Promise<void>
 }
 
 interface UserProviderProps {
@@ -242,8 +242,8 @@ export const UserProvider: FC<UserProviderProps> = (props) => {
     })
   }
 
-  const update = async (email: string, mobilePhone: string, firstName: string, lastName: string, password: string): Promise<void> => {
-    const user = await userApi.update(email, mobilePhone, firstName, lastName)
+  const update = async (email: string, firstName: string, lastName: string): Promise<void> => {
+    const user = await userApi.update(email, firstName, lastName)
     dispatch({
       type: ActionType.UPDATE,
       payload: {

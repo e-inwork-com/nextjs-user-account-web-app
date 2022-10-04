@@ -1,21 +1,17 @@
 import type { FC } from 'react'
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Bars3BottomLeftIcon, BellIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import PropTypes from 'prop-types'
-import { get } from 'lodash'
+import { find, get } from 'lodash'
+import { useTranslation } from 'react-i18next'
 import { useUser } from '../../hooks/use-user'
+import { UserUpdateForm } from '../user/user-update-form'
 
 interface DashboardNavbarProps {
   setSidebarOpen: (value: any) => void;
 }
-
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '/users/logout' },
-]
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -23,11 +19,45 @@ function classNames(...classes: any) {
 
 export const DashboardNavbar: FC<DashboardNavbarProps> = (props) => {
   const { setSidebarOpen, ...other } = props;
+  const { t } = useTranslation()
   const { user } = useUser() as any
+  const [openSlideOvers, setOpenSlideOvers] = useState(false)
+  const [dashboardSlideOvers, setDashboardSlideOvers] = useState(null) as any
+
+  const userNavigation = [
+    { name: t('Your Profile'), href: '#profile' },
+    { name: t('Sign out'), href: '/users/logout' },
+  ]
 
   const stringAvatar = (name: string) => {
     return `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
   }
+
+  useEffect(() => {
+    const onHashChanged = () => {
+      const navigation  = find(userNavigation, item => item.href === window.location.hash)
+      if (navigation) {
+        setOpenSlideOvers(true)
+        setDashboardSlideOvers(window.location.hash)
+      }
+    };
+    window.addEventListener("hashchange", onHashChanged)
+
+    return () => {
+      window.removeEventListener("hashchange", onHashChanged)
+    };
+  }, [openSlideOvers, setOpenSlideOvers]);
+
+
+  useEffect(() => {
+    if (window.location.hash) {
+      const navigation  = find(userNavigation, item => item.href === window.location.hash)
+      if (navigation) {
+        setOpenSlideOvers(true)
+        setDashboardSlideOvers(window.location.hash)
+      }
+    }
+  }, [])
 
   return (
     <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
@@ -109,6 +139,9 @@ export const DashboardNavbar: FC<DashboardNavbarProps> = (props) => {
           </Menu>
         </div>
       </div>
+      {dashboardSlideOvers === '#profile' && (
+        <UserUpdateForm open={openSlideOvers} setOpen={setOpenSlideOvers} />
+      )}
     </div>
   )
 }

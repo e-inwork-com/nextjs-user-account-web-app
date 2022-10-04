@@ -54,11 +54,10 @@ class UserApi {
     })
   }
 
-  async update(email: string, mobilePhone: string, firstName: string, lastName: string): Promise<object>  {
+  async update(email: string, firstName: string, lastName: string): Promise<object>  {
     return new Promise((resolve, reject) => {
       axios.patch(`${apiConfig.host}/api/users/me/`, {
         email: email,
-        mobile_phone: mobilePhone,
         first_name: firstName,
         last_name: lastName,
       }).then((response: any) => {

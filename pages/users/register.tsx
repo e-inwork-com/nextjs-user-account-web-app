@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { RegisterForm  } from '../../components/user/register-form'
+import { UserRegisterForm  } from '../../components/user/user-register-form'
 import { useTranslation } from 'react-i18next'
 
 const Register: NextPage = () => {
@@ -26,7 +26,7 @@ const Register: NextPage = () => {
                 </a>
               </p>
             </div>
-            <RegisterForm />
+            <UserRegisterForm />
           </div>
         </div>
       </div>
