@@ -19,13 +19,8 @@ const App: FC<NexPageProps> = (props) => {
   return (
     <>
       <Head>
-        <title>
-          {t('Home')}
-        </title>
-        <meta
-          name="viewport"
-          content="initial-scale=1, width=device-width"
-        />
+        <title>{t('e-inwork.com')}</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <UserProvider>
         {getLayout(<Component {...pageProps} />)}
