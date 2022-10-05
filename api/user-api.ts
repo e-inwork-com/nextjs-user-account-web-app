@@ -1,3 +1,4 @@
+import { get } from 'lodash'
 import axios from '../lib/axios'
 import { apiConfig } from '../config'
 
@@ -49,7 +50,15 @@ class UserApi {
       }).then((response: any) => {
         resolve(response.data)
       }).catch((error: any) => {
-        reject(error)
+        if (error.response.status === 400) {
+          if (get(error.response.data, 'email')) {
+            reject(new Error('User with this email is already exist'))
+          } else {
+            reject(error)
+          }
+        } else {
+          reject(error)
+        }
       })
     })
   }
