@@ -14,7 +14,7 @@ type NexPageProps = AppProps & {
 const App: FC<NexPageProps> = (props) => {
   const { Component, pageProps } = props
   const { t } = useTranslation()
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
     <>

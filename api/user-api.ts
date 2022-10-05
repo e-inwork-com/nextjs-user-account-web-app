@@ -29,7 +29,7 @@ class UserApi {
         this.setSession(response.data.access)
         resolve(response.data.access)
       }).catch((error: any) => {
-        if (error.response.status === 400) {
+        if (error.response.status === 401) {
           reject(new Error('Check the right password and the right email'))
         } else {
           reject(error)
