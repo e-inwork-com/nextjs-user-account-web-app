@@ -2,7 +2,6 @@ import type { FC } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useTranslation } from 'react-i18next'
-import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import { ExclamationCircleIcon } from '@heroicons/react/20/solid'
 import { XCircleIcon } from '@heroicons/react/20/solid'
@@ -42,11 +41,9 @@ export const UserRegisterForm: FC = () => {
     onSubmit: async (values, helpers): Promise<void> => {
       try {
         await register(values.email, values.firstName, values.lastName, values.password)
-        toast.success(t('Successfuly!'))
         router.push('/users/login')
       } catch (err: any) {
         console.error(err)
-        toast.error(t('Something wrong!'))
         helpers.setStatus({ success: false })
         helpers.setErrors({ submit: err.message })
         helpers.setSubmitting(false)

@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [e-inwork.com](https://e-inwork.com)
+# NextJS User Account Web App
+The template project of the NextJS Web Application with connection to the REST API backend
 
-## Getting Started
 
-First, run the development server:
+## Main Packages
+| Name              | Link
+| ----------------- | ---------------
+| React             | [https://reactjs.org]()
+| Next.js           | [https://nextjs.org]()
+| TailwindCSS       | [https://tailwindcss.com]()
+| Formik            | [https://formik.org]()
+| Axios             | [https://axios-http.com]()
+| Lodash            | [https://lodash.com]()
+| i18next           | [https://www.i18next.com]()
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Main Features
+- [Context API](https://reactjs.org/docs/context.html): connect the component with the REST API backend
+- [Hooks API](https://reactjs.org/docs/hooks-reference.html): use a Context API on every component
+- [useFormik](https://formik.org/docs/api/useFormik): easy way using a Formik library on the component
+- [useTranslation](https://react.i18next.com/latest/usetranslation-hook): localize UI to support multiple language
+- [Utility-first CSS Framework](https://tailwindui.com/components): to think how component display on the screen, rather than focusing on the functionality of the item being styled
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Setting up the development environment with Docker
+### Run the Application in the localhost environment
+1. Setup the REST API backend for this application, and follow how to setup it on this repository [https://github.com/e-inwork-com/django-user-account-api](https://github.com/e-inwork-com/django-user-account-api)
+2. Install Docker, if you don't have it
+   - https://docs.docker.com/get-docker/
+3. Git clone this repository to your localhost and from terminal run below command:
+   ```
+   git clone git@github.com:e-inwork-com/nextjs-user-account-web-app.git
+   ```
+4. Change the active folder to `nextjs-user-account-web-app` and run Docker Compose:
+   ```
+   cd nextjs-user-account-web-app
+   ```
+5. Copy file `.env.example` to `.env.local`. This file is the setting environment to connnect this application to the REST API backend
+6. Run the Docker file with Docker Compose
+   ```
+   docker-compose up -d
+   ```
+7. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. Try the UI, and following feature:
+    - Register a user
+    - Login to the account
+    - Update the user account
+    - Logout from the user account
+8. Have fun, and good luck!
