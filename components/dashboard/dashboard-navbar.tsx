@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 import { Fragment, useState, useEffect } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import Link from 'next/link'
 import { Bars3BottomLeftIcon, BellIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import PropTypes from 'prop-types'
@@ -122,15 +123,29 @@ export const DashboardNavbar: FC<DashboardNavbarProps> = (props) => {
                 {userNavigation.map((item) => (
                   <Menu.Item key={item.name}>
                     {({ active }) => (
-                      <a
-                        href={item.href}
-                        className={classNames(
-                          active ? 'bg-gray-100' : '',
-                          'block px-4 py-2 text-sm text-gray-700'
+                      <>
+                        {item.href.includes('#') ? (
+                          <a href={item.href}
+                            className={classNames(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-sm text-gray-700'
+                            )}
+                          >
+                            {item.name}
+                          </a>
+                        ) : (
+                          <Link href={item.href}>
+                            <a
+                              className={classNames(
+                                active ? 'bg-gray-100' : '',
+                                'block px-4 py-2 text-sm text-gray-700'
+                              )}
+                            >
+                              {item.name}
+                            </a>
+                          </Link>
                         )}
-                      >
-                        {item.name}
-                      </a>
+                      </>
                     )}
                   </Menu.Item>
                 ))}

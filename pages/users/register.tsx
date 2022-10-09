@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import { UserRegisterForm  } from '../../components/user/user-register-form'
 import { useTranslation } from 'react-i18next'
 
@@ -21,9 +22,11 @@ const Register: NextPage = () => {
               </h2>
               <p className="mt-2 text-sm text-gray-600">
               {t('Or')}{' '}
-                <a href="/users/login" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  {t('Login to your account')}
-                </a>
+                <Link href="/users/login">
+                  <a  className="font-medium text-indigo-600 hover:text-indigo-500">
+                    {t('Login to your account')}
+                  </a>
+                </Link>
               </p>
             </div>
             <UserRegisterForm />
