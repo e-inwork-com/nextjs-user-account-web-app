@@ -6,13 +6,13 @@ The template project of the NextJS Web Application with connection to the REST A
 ## Main Packages
 | Name              | Link
 | ----------------- | ---------------
-| React             | [https://reactjs.org]()
-| Next.js           | [https://nextjs.org]()
-| TailwindCSS       | [https://tailwindcss.com]()
-| Formik            | [https://formik.org]()
-| Axios             | [https://axios-http.com]()
-| Lodash            | [https://lodash.com]()
-| i18next           | [https://www.i18next.com]()
+| React             | [https://reactjs.org](https://reactjs.org)
+| Next.js           | [https://nextjs.org](https://nextjs.org)
+| TailwindCSS       | [https://tailwindcss.com](https://tailwindcss.com)
+| Formik            | [https://formik.org](https://formik.org)
+| Axios             | [https://axios-http.com](https://axios-http.com)
+| Lodash            | [https://lodash.com](https://lodash.com)
+| i18next           | [https://www.i18next.com](https://www.i18next.com)
 
 
 ## Main Features
