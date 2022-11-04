@@ -7,5 +7,5 @@ services:
         - "3000:3000"
       stdin_open: true
       volumes:
-        - .:/usr/src/web
+        - .:/usr/src/app
         - /usr/src/app/node_modules
